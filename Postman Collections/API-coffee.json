@@ -772,6 +772,53 @@
 				},
 				{
 					"name": "Obtener productos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ef0e0672-8fda-43a4-aeb4-178fdf1b87a1",
+								"exec": [
+									"pm.test('Prueba 1: Validad que la respuesta es exitosa(200)', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('Prueba 2: Valida que el Header contenga Date', function () {\r",
+									"    pm.expect(pm.response.headers.has('Date')).to.be.true;\r",
+									"});\r",
+									"\r",
+									"pm.test('Prueba 3: Valida que el tiempo de respuesta sea menor a 1000', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test('Prueba 4: Valida que el nombre del status sea ok', function () {\r",
+									"    pm.response.to.have.status('OK');\r",
+									"});\r",
+									"\r",
+									"pm.test('Prueba 5: Valida que respuesta contenga ID', function () {\r",
+									"    pm.expect(pm.response.text()).to.include('_id');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Prueba 8: Validar que la respuesta contenga NAME\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"});\r",
+									"\r",
+									"pm.test('Prueba 9: Validar que la respuesta contenga User', function () { \r",
+									"    pm.expect(pm.response.text()).to.include(\"user\");\r",
+									"});\r",
+									"\r",
+									"pm.test('Prueba 10: Valida que respuesta contenga products', function () {\r",
+									"    pm.expect(pm.response.text()).to.include('products');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Prueba 11:La respuesta no debería contener errores y debe ser un JSON válido\", function () {\r",
+									"    pm.response.to.not.be.error;\r",
+									"    pm.response.to.have.jsonBody();\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "af9096c8-1bc5-446c-8deb-bf9dd7f4c076",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
