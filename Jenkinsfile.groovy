@@ -11,6 +11,7 @@ pipeline {
             steps {
                 script {
                     sh 'rm -f results/TEST-postman-results.xml'
+                    
                 }
             }
         }
@@ -18,8 +19,9 @@ pipeline {
         stage('Run Postman Tests') {
             steps { 
                 script{
-                    //sh 'newman run tests/API-coffee.json --reporters cli,junit,htmlextra --reporter-junit-export results/TEST-postman-results.xml --reporter-htmlextra-export results/TEST-postman-results.html --suppress-exit-code'
-                    sh 'newman run tests/API-coffee.json -e environments/API-coffee-environment.json --reporters cli,junit,htmlextra --reporter-junit-export results/TEST-postman-results.xml --reporter-htmlextra-export results/TEST-postman-results.html --suppress-exit-code'
+                    //sh 'npm install newman@5.2.3 newman-reporter-htmlextra@1.19.0'
+                    sh 'npx newman run tests/API-Petstore.json -e environments/testEnvironment.json --reporters cli,junit,htmlextra --reporter-junit-export results/TEST-postman-results.xml --reporter-htmlextra-export results/TEST-postman-results.html --suppress-exit-code'
+                      
                 }
             }
         }
